@@ -1,0 +1,8 @@
+<% unless current_user.ineligible_to_vote_for? link %>
+
+	<%= form_for current_user.votes.build(:link_id => link.id) do |f| %>
+		<div><%= f.hidden_field :link_id %></div>
+		<div class="actions"><%= image_submit_tag('up_arrow.gif') %></div>
+	<% end %>
+	
+<% end %>

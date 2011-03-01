@@ -7,6 +7,9 @@ namespace :db do
     make_users
     make_microposts
     make_relationships
+    make_links
+    make_votes
+    make_comments
   end
 end
 
@@ -43,4 +46,26 @@ def make_relationships
   followers = users[3..40]
   following.each { |followed| user.follow!(followed) }
   followers.each { |follower| follower.follow!(user) }
+end
+
+def make_links
+  users = User.all
+  35.times do |n|
+    user = users[n]
+    url = Faker::Internet.domain_name
+    headline = Faker::Lorem::sentence(2 + rand(6))
+    user.links.create!(:url => url, :headline => headline)
+  end
+end
+
+def make_votes
+  num_users = User.all.count
+  Link.all(:limit => 10).each do |link|
+    rand(10).times do |vote|
+      User.find_by_id(rand(num_users)).vote_for!(link)
+    end
+  end
+end
+
+def make_comments
 end

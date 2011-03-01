@@ -1,0 +1,18 @@
+<tr>
+	<% if comment.commenter_id.nil? %>
+	<p>yep, it's nil</p>
+	<% end %>
+	<td class="micropost">
+		<span class="content">
+			<%= comment.content %>
+		</span>
+		<span class="timestamp">
+			<%= 1 %> points
+			<% commenter = User.find(comment.commenter_id) %>
+			by <%= link_to commenter.name, commenter %>
+			link id: <%= comment.link_id %>
+			<%= time_ago_in_words(comment.created_at) %> ago
+			<%= link_to "reply", links_path %>
+    </span>
+	</td>	
+</tr>

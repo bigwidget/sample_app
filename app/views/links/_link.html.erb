@@ -1,0 +1,15 @@
+<tr>
+	<td class="micropost">
+		<span class="content">
+			<%= render :partial => "vote", :locals => {:link => link}  %>
+			<a href="<%= link.full_url %>"><%= link.headline %></a>
+		</span>
+		<span class="timestamp">
+			<%= link.votes.count + 1 %> points
+			by <%= link_to link.user.name, link.user %>
+			<%= time_ago_in_words(link.created_at) %> ago
+			<%= "score: #{link.score}" %>
+			<%= link_to "discuss", link %>
+    </span>
+	</td>	
+</tr>

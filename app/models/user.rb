@@ -23,6 +23,9 @@ class User < ActiveRecord::Base
                                     :class_name => "Relationship",
                                     :dependent => :destroy
   has_many :followers, :through => :reverse_relationships, :source => :follower
+  has_many :links
+  has_many :votes, :foreign_key => "voter_id"
+  has_many :comments, :foreign_key => "commenter_id"
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   
@@ -69,6 +72,25 @@ class User < ActiveRecord::Base
     Micropost.from_users_followed_by(self)
   end
   
+  def vote_for!(link) 
+    unless ineligible_to_vote_for? link
+      votes.create!(:link_id => link.id)
+      link.update_score
+    end
+  end
+  
+  def ineligible_to_vote_for?(link)
+    is_submitter_of?(link) || already_voted_for?(link)
+  end
+  
+  def is_submitter_of?(link)
+    link.user_id == id
+  end
+  
+  def already_voted_for?(link)
+    link.votes.find_by_voter_id(id)
+  end
+  
   private
   
     def encrypt_password
@@ -87,4 +109,5 @@ class User < ActiveRecord::Base
     def secure_hash(string)
       Digest::SHA2.hexdigest(string)
     end
+    
 end

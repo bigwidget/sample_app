@@ -10,7 +10,29 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110224001150) do
+ActiveRecord::Schema.define(:version => 20110301032609) do
+
+  create_table "comments", :force => true do |t|
+    t.text     "content"
+    t.integer  "commenter_id"
+    t.integer  "link_id"
+    t.integer  "parent_comment_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["link_id"], :name => "index_comments_on_link_id"
+
+  create_table "links", :force => true do |t|
+    t.string   "url"
+    t.string   "headline"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "score"
+  end
+
+  add_index "links", ["score"], :name => "index_links_on_score"
 
   create_table "microposts", :force => true do |t|
     t.string   "content"
@@ -43,5 +65,17 @@ ActiveRecord::Schema.define(:version => 20110224001150) do
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+
+  create_table "votes", :force => true do |t|
+    t.integer  "voter_id"
+    t.integer  "link_id"
+    t.integer  "direction"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "votes", ["link_id"], :name => "index_votes_on_link_id"
+  add_index "votes", ["voter_id", "link_id"], :name => "index_votes_on_voter_id_and_link_id", :unique => true
+  add_index "votes", ["voter_id"], :name => "index_votes_on_voter_id"
 
 end

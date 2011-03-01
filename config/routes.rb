@@ -1,4 +1,5 @@
 SampleApp::Application.routes.draw do
+
   resources :users do
     member do
       get :following, :followers
@@ -8,6 +9,9 @@ SampleApp::Application.routes.draw do
   resources :sessions,      :only => [:new, :create, :destroy]
   resources :microposts,    :only => [:create, :destroy]
   resources :relationships, :only => [:create, :destroy]
+  resources :links #what do I do here?
+  resources :votes
+  resources :comments
   
   match '/signup',  :to => 'users#new'
   match '/signin',  :to => 'sessions#new'
