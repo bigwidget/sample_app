@@ -9,7 +9,7 @@ class LinksController < ApplicationController
     @link = Link.find(params[:id])
     @title = @link.headline
     @comment = Comment.new
-    @comments = @link.comments
+    @root_comments = root_level(@link.comments)
   end
   
   def new
@@ -28,6 +28,12 @@ class LinksController < ApplicationController
   
   def destroy
     @link.destroy
+  end
+  
+  private
+  
+  def root_level(comments)
+    comments.select { |comment| comment.is_root? }
   end
 
 end

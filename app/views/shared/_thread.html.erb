@@ -1,0 +1,23 @@
+<table class="microposts">
+<tr>
+	<% width = level<=7 ? level*20 : 140%>
+	<td><%= image_tag("s.gif", :width => width)%></td>
+	<td class="micropost">
+		<%= render :partial => 'shared/vote', :locals => {:votable => comment}  %>
+		<%= render :partial => 'shared/meta', :locals => {:item => comment} %>
+		<span class="content">
+			<%= comment.content %>
+		</span>
+		<span>
+			<br /><%= link_to "reply", comment %>
+		</span>
+	</td>	
+</tr>
+</table>
+
+<% if !comment.replies.empty? %>
+	<% comment.replies.each do |c| %>
+	<%= render 	:partial => 'shared/thread',
+							:locals => {:comment => c, :level => level + 1} %>
+	<% end %>
+<% end %>

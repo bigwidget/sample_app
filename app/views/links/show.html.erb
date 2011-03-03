@@ -20,8 +20,9 @@
 	</div>
 <% end %>
 
-<% unless @comments.empty? %>
-<table class="microposts" summary="all comments">
-		<%= render @comments %>
-</table>
+<% unless @root_comments.empty? %>
+		<% @root_comments.each do |c| %>
+			<%= render :partial => 'shared/thread',
+								 :locals => {:comment => c, :level => 0} %>
+		<% end %>
 <% end %>

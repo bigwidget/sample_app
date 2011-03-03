@@ -86,7 +86,7 @@ class User < ActiveRecord::Base
   end
   
   def is_submitter_of?(votable)
-    votable.submitter_id == id
+    votable.submitter.id == id
   end
   
   def already_voted_for?(votable)

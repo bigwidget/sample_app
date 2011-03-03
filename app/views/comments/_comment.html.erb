@@ -1,16 +1,16 @@
 <tr>
+	<td><%= image_tag("s.gif", :width => (40))%></td>
 	<td class="micropost">
 		<span class="content">
-			<%= render :partial => "vote", :locals => {:votable => comment}  %>
+			<%= render :partial => 'shared/vote', :locals => {:votable => comment}  %>
 			<%= comment.content %>
 		</span>
 		<span class="timestamp">
 			<%= comment.votes.empty? ? 1 : comment.votes.count + 1 %> points
 			<% commenter = User.find(comment.commenter_id) %>
 			by <%= link_to commenter.name, commenter %>
-			link id: <%= comment.link_id %>
 			<%= time_ago_in_words(comment.created_at) %> ago
-			<%= link_to "reply", links_path %>
+			<%= link_to "reply", comment %>
     </span>
 	</td>	
 </tr>

@@ -37,9 +37,9 @@ class Link < ActiveRecord::Base
     "http://" + url
   end
   
-  def submitter_id
-    return user_id
+  def submitter
+    return user
   end
-  
+    
   default_scope :order => 'links.score DESC'
 end

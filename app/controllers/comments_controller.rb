@@ -3,6 +3,7 @@ class CommentsController < ApplicationController
   def show
     @comment = Comment.find(params[:id])
     @title = "should be first ~100 characters in post"
+    @comments = Comment.find_by_parent_comment_id(@comment.id)
   end
 
   def new  #### don't think I need a new page

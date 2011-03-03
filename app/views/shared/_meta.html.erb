@@ -1,0 +1,6 @@
+<span class="timestamp">
+	<%= pluralize(item.votes.count + 1, "point") %>
+	by <%= link_to item.submitter.name, item.submitter %>
+	<%= time_ago_in_words(item.created_at) %> ago
+	| <%= link_to link_text(item), item %>
+</span>
