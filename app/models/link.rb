@@ -2,8 +2,8 @@ class Link < ActiveRecord::Base
   attr_accessible :url, :headline
   
   belongs_to :user
-  has_many :votes, :foreign_key => "link_id"      #### TRY REMOVING FOREIGN KEY
-  has_many :comments, :foreign_key => "link_id"   #### SPECIFICATIONS
+  has_many :votes, :as => :votable                  #### TRY REMOVING FOREIGN KEY
+  has_many :comments, :foreign_key => "link_id"     #### SPECIFICATIONS
   
   validates :url,       :presence   => true,
                         :uniqueness => true
@@ -15,6 +15,7 @@ class Link < ActiveRecord::Base
   #also has user_id
   
   before_validation_on_create :initialize_score
+  #### DEPRECATION WARNING: before_validation_on_create is deprecated. Please use before_validation(arguments, :on => :create.
   
   def initialize_score
     self.score = 0
@@ -34,6 +35,10 @@ class Link < ActiveRecord::Base
   
   def full_url
     "http://" + url
+  end
+  
+  def submitter_id
+    return user_id
   end
   
   default_scope :order => 'links.score DESC'

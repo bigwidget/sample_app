@@ -72,23 +72,25 @@ class User < ActiveRecord::Base
     Micropost.from_users_followed_by(self)
   end
   
-  def vote_for!(link) 
-    unless ineligible_to_vote_for? link
-      votes.create!(:link_id => link.id)
-      link.update_score
+  def vote_for!(votable) 
+    unless ineligible_to_vote_for? votable
+      votes.create!(:votable_id => votable.id,
+                    :votable_type => votable.class.name,
+                    :direction => nil)
+      votable.update_score  if votable.class.name == "Link"
     end
   end
   
-  def ineligible_to_vote_for?(link)
-    is_submitter_of?(link) || already_voted_for?(link)
+  def ineligible_to_vote_for?(votable)
+    already_voted_for?(votable) || is_submitter_of?(votable)
   end
   
-  def is_submitter_of?(link)
-    link.user_id == id
+  def is_submitter_of?(votable)
+    votable.submitter_id == id
   end
   
-  def already_voted_for?(link)
-    link.votes.find_by_voter_id(id)
+  def already_voted_for?(votable)
+    votable.votes.find_by_voter_id(id)
   end
   
   private

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110301032609) do
+ActiveRecord::Schema.define(:version => 20110301232103) do
 
   create_table "comments", :force => true do |t|
     t.text     "content"
@@ -68,14 +68,15 @@ ActiveRecord::Schema.define(:version => 20110301032609) do
 
   create_table "votes", :force => true do |t|
     t.integer  "voter_id"
-    t.integer  "link_id"
+    t.integer  "votable_id"
     t.integer  "direction"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "votable_type"
   end
 
-  add_index "votes", ["link_id"], :name => "index_votes_on_link_id"
-  add_index "votes", ["voter_id", "link_id"], :name => "index_votes_on_voter_id_and_link_id", :unique => true
+  add_index "votes", ["votable_id"], :name => "index_votes_on_link_id"
+  add_index "votes", ["voter_id", "votable_id"], :name => "index_votes_on_voter_id_and_link_id", :unique => true
   add_index "votes", ["voter_id"], :name => "index_votes_on_voter_id"
 
 end

@@ -6,12 +6,12 @@ SampleApp::Application.routes.draw do
     end
   end
   
-  resources :sessions,      :only => [:new, :create, :destroy]
-  resources :microposts,    :only => [:create, :destroy]
-  resources :relationships, :only => [:create, :destroy]
-  resources :links #what do I do here?
-  resources :votes
+  resources :sessions,      :only     => [:new, :create, :destroy]
+  resources :microposts,    :only     => [:create, :destroy]
+  resources :relationships, :only     => [:create, :destroy]
+  resources :links
   resources :comments
+  resources :votes
   
   match '/signup',  :to => 'users#new'
   match '/signin',  :to => 'sessions#new'

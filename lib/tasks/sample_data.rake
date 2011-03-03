@@ -53,7 +53,7 @@ def make_links
   35.times do |n|
     user = users[n]
     url = Faker::Internet.domain_name
-    headline = Faker::Lorem::sentence(2 + rand(6))
+    headline = Faker::Lorem::sentence(2 + rand(4))
     user.links.create!(:url => url, :headline => headline)
   end
 end
@@ -62,7 +62,7 @@ def make_votes
   num_users = User.all.count
   Link.all(:limit => 10).each do |link|
     rand(10).times do |vote|
-      User.find_by_id(rand(num_users)).vote_for!(link)
+      User.find(rand(num_users)).vote_for!(link)
     end
   end
 end

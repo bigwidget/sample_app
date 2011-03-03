@@ -1,13 +1,11 @@
 <tr>
-	<% if comment.commenter_id.nil? %>
-	<p>yep, it's nil</p>
-	<% end %>
 	<td class="micropost">
 		<span class="content">
+			<%= render :partial => "vote", :locals => {:votable => comment}  %>
 			<%= comment.content %>
 		</span>
 		<span class="timestamp">
-			<%= 1 %> points
+			<%= comment.votes.empty? ? 1 : comment.votes.count + 1 %> points
 			<% commenter = User.find(comment.commenter_id) %>
 			by <%= link_to commenter.name, commenter %>
 			link id: <%= comment.link_id %>

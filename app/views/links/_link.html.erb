@@ -1,7 +1,7 @@
 <tr>
 	<td class="micropost">
 		<span class="content">
-			<%= render :partial => "vote", :locals => {:link => link}  %>
+			<%= render :partial => "vote", :locals => {:votable => link}  %>
 			<a href="<%= link.full_url %>"><%= link.headline %></a>
 		</span>
 		<span class="timestamp">
