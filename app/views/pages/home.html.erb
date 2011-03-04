@@ -19,6 +19,15 @@
 	  <a href="http://railstutorial.org/">Ruby on Rails Tutorial</a>
 	  sample application.
 	</p>
+	<div id="fb-root"></div>
+  <script src="http://connect.facebook.net/en_US/all.js"></script>
+  <script>
+     FB.init({ 
+        appId:'130370623700799', cookie:true, 
+        status:true, xfbml:true 
+     });
+  </script>
+  <fb:login-button>Login with Facebook</fb:login-button>
 
 	<%= link_to "Sign up now!", signup_path, :class => "signup_button round" %>
 <% end %>

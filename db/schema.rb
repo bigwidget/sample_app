@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(:version => 20110301232103) do
     t.text     "content"
     t.integer  "commenter_id"
     t.integer  "link_id"
-    t.integer  "parent_comment_id"
+    t.integer  "parent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

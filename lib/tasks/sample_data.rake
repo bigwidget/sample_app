@@ -62,7 +62,7 @@ def make_votes
   num_users = User.all.count
   Link.all(:limit => 10).each do |link|
     rand(10).times do |vote|
-      User.find(rand(num_users)).vote_for!(link)
+      User.find(rand(num_users)+1).vote_for!(link)
     end
   end
 end
