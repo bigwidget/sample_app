@@ -1,0 +1,7 @@
+<h1>Links Upvoted by <%= @user.name %></h1>
+
+<table class="microposts" summary="All submitted links">
+		<%= render @upvoted_links %>
+</table>
+
+<%= will_paginate @upvoted_links %>

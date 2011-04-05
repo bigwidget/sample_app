@@ -1,0 +1,9 @@
+<h1>Comments by <%= @user.name %></h1>
+
+<table class="microposts" summary="comments by user">
+	<% @comments.each do |c| %>
+		<%= render :partial => 'users/comment', :locals => {:comment => c} %>
+	<% end %>
+</table>
+
+<%= will_paginate @comments %>

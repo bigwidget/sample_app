@@ -1,0 +1,16 @@
+<tr>
+	<td class="micropost">
+		<%= render :partial => 'shared/vote', 
+							 :locals => { :votable => comment}  %>
+		<%= render :partial => 'shared/meta',
+							 :locals => { :item => comment,
+														:ref_link => replies_link(comment), 
+														:ref_link2 => link_to("full discussion", comment.link)} %>
+		<span class="content">
+			<%= comment.content %>
+		</span>
+		<span>
+			<br /><%= link_to "reply", comment %>
+		</span>
+	</td>	
+</tr>

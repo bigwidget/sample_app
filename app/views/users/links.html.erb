@@ -1,0 +1,6 @@
+<h1>Links Submitted by <%= @user.name %></h1>
+<table class="microposts" summary="All submitted links">
+		<%= render @links %>
+</table>
+
+<%= will_paginate @links %>
