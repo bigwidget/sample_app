@@ -3,8 +3,10 @@
 	<% width = level<=7 ? level*20 : 140%>
 	<td><%= image_tag("s.gif", :width => width)%></td>
 	<td class="micropost">
-		<%= render :partial => 'shared/vote', :locals => {:votable => comment}  %>
-		<%= render :partial => 'shared/meta', :locals => {:item => comment} %>
+		<%= render 	:partial => 'shared/vote',
+								:locals => {:votable => comment}  %>
+		<%= render 	:partial => 'shared/meta', 
+								:locals => {:item => comment, :ref_link => link_to("link", comment)} %>
 		<span class="content">
 			<%= comment.content %>
 		</span>

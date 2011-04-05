@@ -1,9 +1,0 @@
-<% unless current_user.ineligible_to_vote_for? votable %>
-
-	<%= form_for current_user.votes.build(:votable_id => votable.id, :votable_type => votable.class.name) do |f| %>
-		<div><%= f.hidden_field :votable_id %></div>
-		<div><%= f.hidden_field :votable_type %></div>
-		<div class="actions"><%= image_submit_tag('up_arrow.gif') %></div>
-	<% end %>
-	
-<% end %>

@@ -1,23 +1,52 @@
-<table class="profile" summary="Profile information">
+<table>
 	<tr>
-		<td class="main">
-			<h1>
-				<%= gravatar_for @user %>
-				<%= @user.name %>
-			</h1>
-			<%= render 'follow_form' if signed_in? %>
-			<% unless @user.microposts.empty? %>
-				<table class="microposts" summary="User microposts">
-					<%= render @microposts %>
-				</table>
-				<%= will_paginate @microposts %>
+		<td valign=top>Name:</td>
+		<td><%= @user.name %></td>
+	</tr>
+	<tr>
+		<td valign=top>Karma:</td>
+		<td><%= @user.karma %></td>
+	</tr>
+	<tr>
+		<td valign=top>Hive activity:</td>
+		<td>
+		<% if @no_activity %>
+			none
+		<% else %>
+			<% if !@user.links.empty? %>
+			<%= link_to("link submissions", links_user_path(@user)) %> | 
 			<% end %>
+			<% if !@user.comments.empty? %>
+			<%= link_to("comments", 				comments_user_path(@user)) %> | 
+			<% end %>
+			<% if !@link_votes.empty? %>
+			<%= link_to("upvoted links",		upvoted_user_path(@user)) %>
+			<% end %>
+		<% end %>
 		</td>
-		<td class="sidebar round">
-			<strong>Name</strong> <%= @user.name %><br />
-			<strong>URL</strong> <%= link_to user_path(@user), @user %><br />
-			<strong>Microposts</strong> <%= @user.microposts.count %>
-			<%= render 'shared/stats' %>
-		</td>
+	</tr>
+	<tr>
+		<td valign=top>About:</td>
+		<td>user.about</td>
+	</tr>
+	<tr>
+		<td valign=top>Location:</td>
+		<td>user.city</td>
+	</tr>
+	<tr>
+		<td valign=top>Work:</td>
+		<td>user.job_title (need to change from job to job_title) at user.company (need to change to company_name, and add company_url)</td>
+	</tr>
+	<tr>
+		<td valign=top>College:</td>
+		<td>user.college</td>
+	</tr>
+	<tr>
+		<td valign=top>Find Me:</td>
+		<td>user.blog, user.facebook, user.twitter, user.linkedin (rename to linkedin), user.personal_site</td>
+	</tr>	
+	<tr>
+		<td valign=top>Email:</td>
+		<td>user.email</td>
 	</tr>
 </table>

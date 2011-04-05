@@ -12,7 +12,7 @@
 
 require 'digest'
 class User < ActiveRecord::Base
-  attr_accessor :password
+  attr_accessor :password, :new_password
   attr_accessible :name, :email, :password, :password_confirmation
 
   has_many :microposts, :dependent => :destroy
@@ -72,6 +72,10 @@ class User < ActiveRecord::Base
     Micropost.from_users_followed_by(self)
   end
   
+  def karma
+    vote_total(links) + vote_total(comments) + 1
+  end
+  
   def vote_for!(votable) 
     unless ineligible_to_vote_for? votable
       votes.create!(:votable_id => votable.id,
@@ -95,6 +99,12 @@ class User < ActiveRecord::Base
   
   private
   
+    def vote_total(votables)
+      total = 0
+      votables.each {|v| total += v.votes.count}
+      return total
+    end
+      
     def encrypt_password
       self.salt = make_salt if new_record?
       self.encrypted_password = encrypt(password)

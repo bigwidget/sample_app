@@ -2,7 +2,7 @@ SampleApp::Application.routes.draw do
 
   resources :users do
     member do
-      get :following, :followers
+      get :following, :followers, :comments, :links, :upvoted
     end
   end
   
@@ -20,7 +20,7 @@ SampleApp::Application.routes.draw do
   match '/about',   :to => 'pages#about'
   match '/help',    :to => 'pages#help'
   
-  root :to => 'pages#home'
+  root :to => 'links#index'
 
 
   # The priority is based upon order of creation:

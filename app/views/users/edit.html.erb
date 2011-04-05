@@ -1,29 +1,21 @@
-<h1>Edit user</h1>
-
-<%= form_for(@user) do |f| %>
-  <%= render 'shared/error_messages', :object => f.object %>
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password %>
-  </div>
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirmation" %><br />
-    <%= f.password_field :password_confirmation %>
-  </div>
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
+<h1>Edit Your Profile</h1>
+<p>All fields are optional.</p>
+<%= semantic_form_for @current_user do |f| %>
+	<% f.inputs do %>
+		<%= f.input :about %>
+		<%= f.input :location, :hint => "current city" %>
+		<%= f.input :job, :hint => "Be descriptive, e.g. \"Marketing Strategy Consultant\" even if your official title is \"Associate\"." %>
+		<%= f.input :company %>
+		<%= f.input :college %>
+		<%= f.input :blog %>
+		<%= f.input :facebook, :hint => "username or profile url" %>
+		<%= f.input :twitter, :hint => "e.g. @koelkebeck" %>
+		<%= f.input :linked_in, :label => "LinkedIn", :hint => "public profile url, e.g. http://www.linkedin.com/pub/tim-koelkebeck/1/a11/a86" %>
+		<%= f.input :personal_site %>
+		<h3>Privacy Settings</h3>
+		<%= f.input :email_private, :label => "Do not allow members to see my email" %>
+	<% end %>
+	<% f.buttons do %>
+		<%= f.commit_button :label => "Update" %>
+	<% end %>
 <% end %>
-
-<div>
-  <%= gravatar_for @user %>
-  <a href="http://gravatar.com/emails">change</a>
-</div>

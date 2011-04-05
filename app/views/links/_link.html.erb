@@ -4,6 +4,6 @@
 			<%= render :partial => 'shared/vote', :locals => {:votable => link}  %>
 			<a href="<%= link.full_url %>"><%= link.headline %></a>
 		</span>
-		<%= render :partial => 'shared/meta', :locals => {:item => link} %>
+ 		<%= render :partial => 'shared/meta', :locals => {:item => link, :ref_link => discussion_link(link)} %>
 	</td>	
 </tr>

@@ -2,7 +2,7 @@ class LinksController < ApplicationController
   
   def index
     @title = "Links"
-    @links = Link.all
+    @links = Link.all.paginate(:page => params[:page])
   end
   
   def show
