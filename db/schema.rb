@@ -10,7 +10,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110306022515) do
+ActiveRecord::Schema.define(:version => 20110408040441) do
+
+  create_table "affiliations", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "comments", :force => true do |t|
     t.text     "content"
@@ -33,6 +39,13 @@ ActiveRecord::Schema.define(:version => 20110306022515) do
   end
 
   add_index "links", ["score"], :name => "index_links_on_score"
+
+  create_table "memberships", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "affiliation_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "microposts", :force => true do |t|
     t.string   "content"

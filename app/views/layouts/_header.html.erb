@@ -1,8 +1,8 @@
 <header>
-  <%= link_to logo, root_path %>
+  <%= link_to logo, links_path %>
   <nav class="round">
     <ul>
-      <li><%= link_to "Home", root_path %></li>
+      <li><%= link_to "Home", links_path %></li>
 	    <% if signed_in? %>
 		  <li><%= link_to current_user.name, current_user %></li>
 		  <li><%= link_to "Sign out", signout_path, :method => :delete %></li>

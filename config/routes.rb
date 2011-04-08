@@ -1,5 +1,9 @@
 SampleApp::Application.routes.draw do
 
+  get "landing_page/about"
+
+  get "landing_page/contact"
+
   resources :users do
     member do
       get :following, :followers, :comments, :links, :upvoted
@@ -13,15 +17,13 @@ SampleApp::Application.routes.draw do
   resources :comments
   resources :votes
   
-  match '/signup',  :to => 'users#new'
   match '/signin',  :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'
   match '/contact', :to => 'pages#contact'
   match '/about',   :to => 'pages#about'
   match '/help',    :to => 'pages#help'
   
-  root :to => 'links#index'
-
+  root :to => 'users#new'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

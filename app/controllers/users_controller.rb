@@ -1,8 +1,10 @@
 class UsersController < ApplicationController
-  before_filter :authenticate, :except => [:show, :new, :create]
-  before_filter :correct_user, :only => [:edit, :update]
-  before_filter :admin_user,   :only => :destroy
-  
+#  before_filter :authenticate, :except => [:show, :new, :create]
+#  before_filter :correct_user, :only => [:edit, :update]
+#  before_filter :admin_user,   :only => :destroy
+## Need to make a special update action for signup users, with a unique name.  Then use that unique
+## name in the second, optional form for signup.  (something like setting the "method" or "action" attribute)
+ 
   def index
     @title = "All users"
     @users = User.paginate(:page => params[:page])
@@ -17,29 +19,31 @@ class UsersController < ApplicationController
   end
   
   def new
+    redirect_to(links_path) if signed_in?
     @user = User.new
     @title = "Sign up"
   end
   
   def create
     @user = User.new(params[:user])
-    if @user.save
-      sign_in @user
-      redirect_to @user, :flash => { :success => "Welcome to the Sample App!"}
-    else
-      @title = "Sign up"
-      render 'new'
+    respond_to do |format|
+      if @user.save
+        format.html{ render :action => :edit } 
+      else
+        format.html{ render :action => :new }
+      end
     end
-  end
-
-  def edit
-    @title = "Edit user"
   end
   
   def update
+    @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
-      flash[:success] = "Profile updated."
-      redirect_to @user
+      if signed_in?
+        flash[:success] = "Profile updated."
+        redirect_to @user
+      else
+        redirect_to about_path
+      end
     else
       @title = "Edit user"
       render 'edit'
