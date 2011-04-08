@@ -36,7 +36,6 @@ class User < ActiveRecord::Base
                       :format       => { :with => email_regex },
                       :uniqueness   => { :case_sensitive => false }
 
-=begin  
   validates :name,    :presence     => true,
                       :length       => { :maximum => 50 }
   validates :password,:presence     => true,
@@ -44,7 +43,13 @@ class User < ActiveRecord::Base
                       :length       => { :within => 6..40 }
   
   before_save :encrypt_password
-=end
+  
+## this method can probably be deleted
+  def set_password(p)
+    self.password = p
+    encrypt_password
+    save
+  end
   
   def has_password?(submitted_password)
     encrypted_password == encrypt(submitted_password)
@@ -127,5 +132,5 @@ class User < ActiveRecord::Base
     def secure_hash(string)
       Digest::SHA2.hexdigest(string)
     end
-    
+
 end

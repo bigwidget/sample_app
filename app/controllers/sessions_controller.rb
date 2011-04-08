@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   def new
+    sign_out if signed_in?
     @title = "Sign in"
   end
 

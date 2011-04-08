@@ -1,0 +1,14 @@
+Task/Design Schema
+
+MVP
+-Users can sign in at libertarianhive.com/signin
+-I'll have to manually assign passwords
+-Get link aggregation page minimally functional/designed
+-Email notification system
+-Have a few people play for bugs 1
+-Have a dozen or so people lined up to test it out for bugs 2: me, Justin, Don, Paul, Brian, Emily, David?, George?, a few others
+-Users can invite by emailing their own link
+-Ramp up to a few hundred users
+
+Post MVP
+-Forgot password
