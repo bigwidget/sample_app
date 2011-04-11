@@ -20,9 +20,10 @@ Content: <%= @comment.content %> <br />
 
 <% unless @comment.replies.empty? %>
 <h2>Replies to this Comment</h2>
-
+<ol class="list">
 		<% @comment.replies.each do |c| %>
 			<%= render :partial => 'shared/thread',
 								 :locals => {:comment => c, :level => 0} %>
 		<% end %>
+</ol>
 <% end %>

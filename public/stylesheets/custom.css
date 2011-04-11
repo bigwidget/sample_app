@@ -248,3 +248,66 @@ form.new_micropost textarea {
   height: 4em;
   margin-bottom: 0;
 }
+
+.rank {
+	float: left;
+	width: 1.5em;
+	text-align: right;
+  color: #666;
+	margin-right: 6px;
+}
+
+.arrow {
+	float: left;
+	margin-right: 3px;
+}
+
+.item-main {
+	float: left;
+	overflow: auto;
+}
+
+.headline a {
+	color: black;
+}
+
+.meta-head {
+	font-size: 80%;
+	color: #666;
+}
+
+.meta-foot {
+	font-size: 70%;
+  color: #666;	
+}
+
+.meta-foot {
+	margin-top: -3px;
+}
+
+.meta-head a {
+	color: #666;
+}
+
+.meta-foot a {
+	color: #666;
+}
+
+.list {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.list-item {
+	clear: left;
+	margin-bottom: 7px;
+	overflow: auto;
+}
+
+.reply-link {
+	position: relative;
+	font-size: 80%;
+	color: #666;
+	top: -3px;
+}

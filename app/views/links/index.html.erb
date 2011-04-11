@@ -1,5 +1,5 @@
 <h1>All links</h1>
-<span><%= link_to "Submit link", new_link_path %></span>
+<div><%= link_to "Submit link", new_link_path %></div>
 
 <% if !signed_in? %>
 <div id="fb-root"></div>
@@ -14,8 +14,10 @@
 <%= link_to "Sign up now!", signup_path, :class => "signup_button round" %>
 <% end %>
 
-<table class="microposts" summary="All submitted links">
-		<%= render @links %>
-</table>
+<ol class="list">
+	<% @links.each_index do |i| %>
+		<%= render :partial => 'link', :locals => {:link => @links[i], :rank => i + 1} %>
+	<% end %>
+</ol>
 
 <%= will_paginate @links %>

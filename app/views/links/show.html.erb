@@ -21,8 +21,10 @@
 <% end %>
 
 <% unless @root_comments.empty? %>
+	<ol class="list">
 		<% @root_comments.each do |c| %>
 			<%= render :partial => 'shared/thread',
 								 :locals => {:comment => c, :level => 0} %>
 		<% end %>
+	</ol>
 <% end %>
