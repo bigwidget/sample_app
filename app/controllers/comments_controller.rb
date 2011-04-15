@@ -15,6 +15,7 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.build(params[:comment])
     if @comment.save
       flash[:success] = "Comment posted!"
+      @comment.send_notification
       redirect_to (@comment.parent ? @comment.parent : @comment.link)
     else
       redirect_to root_path

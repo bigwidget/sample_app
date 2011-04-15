@@ -11,9 +11,7 @@ class Link < ActiveRecord::Base
                         :length     => { :maximum => 80 }
   
   validates :score,     :presence   => true
-  
-  #also has user_id
-  
+    
   before_validation_on_create :initialize_score
   #### DEPRECATION WARNING: before_validation_on_create is deprecated. Please use before_validation(arguments, :on => :create.
   

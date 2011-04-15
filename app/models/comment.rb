@@ -15,5 +15,13 @@ class Comment < ActiveRecord::Base
   def is_root?
     !parent
   end
+    
+  def send_notification
+    if is_root?
+      UserMailer.link_comment_notification(self).deliver  
+    else
+      UserMailer.reply_notification(self).deliver
+    end  
+  end
   
 end
