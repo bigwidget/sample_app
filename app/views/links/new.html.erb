@@ -1,16 +1,11 @@
 <h1>Submit a link</h1>
 
-<%= form_for(@link) do |f| %>
-	<%= render 'shared/error_messages', :object => f.object %>
-	<div class="field">
-		<%= f.label :url %><br />
-		<%= f.text_field :url %>
-	</div>
-	<div class="field">
-		<%= f.label :headline %><br />
-		<%= f.text_field :headline %>
-	</div>
-	<div class="actions">
-		<%= f.submit "Submit" %>
-	</div>
+<%= semantic_form_for(@link) do |f| %>
+	<%= f.inputs do %>
+		<%= f.input :url, :required => true %>
+		<%= f.input :headline, :required => true %>
+	<% end %>
+	<% f.buttons do %>
+		<%= f.commit_button 'Submit' %>
+	<% end %>
 <% end %>

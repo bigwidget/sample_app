@@ -1,57 +1,77 @@
-.container {
-  width: 710px;
-}
-
-body {
-  background: #cff;
-}
-
-header {
-  padding-top: 20px;
-}
-
-header img {
-  padding: 1em;
-  background: #fff;
-}
-
-section {
-  margin-top: 1em;
-  font-size: 120%;
-  padding: 20px;
-  background: #fff;
-}
-
-section h1 {
-  font-size: 200%;
-}
-
 /* Links */
 
 a {
-  color: #09c;
   text-decoration: none;
 }
 
 a:hover {
-  color: #069;
   text-decoration: underline;
 }
 
-a:visited {
-  color: #069;
+a:link, a:visited, a:active, a:hover {
+	color: black;
+}
+
+/* forms.css */
+
+.container {
+  width: 80%;
+	min-width: 600px;
+	max-width: 800px;
+	min-height: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 20px 25px;
+	background: white;
+}
+
+header {
+	width: 100%;
+	overflow: auto;
+	position: relative;
+}
+
+div.site-title {
+}
+
+
+a.site-title:link, a.site-title:visited, a.site-title:active, a.site-title:hover {
+	font-family: "Britannic Bold", "Arial Black";
+	font-size: 350%;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.bar {
+	width: 100%;
+	height: 9px;
+	background-color: #707070;
+}
+
+section {
+	margin: 0;
+	width: 100%;
+  font-size: 100%;
+	padding: 20px 0;
+	border: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: inherit;
+  font-family: inherit;
+}
+
+section h1 {
+  font-size: 150%;
+	margin-bottom: 10px;
 }
 
 /* Navigation */
 
 nav {
-  float: right;
-}
-
-nav {
-  background-color: white;
-  padding: 0 0.7em;
-  white-space: nowrap;
+	white-space: nowrap;
+	position: absolute;
+	bottom: 12px;
+	right: 10px;
 }
 
 nav ul {
@@ -66,16 +86,11 @@ nav ul li {
 }
 
 nav ul li a {
-  padding: 0 5px;
-  font-weight: bold;
-}
-
-nav ul li a:visited {
-  color: #09c;
+	padding: 0 5px;
 }
 
 nav ul li a:hover {
-  text-decoration: underline;
+	text-decoration: none;
 }
 
 /* Sign up button */
@@ -104,15 +119,15 @@ a.signup_button {
 /* Footer */
 
 footer {
-  text-align: center;
+	width: 100%;
+	text-align: center;
   margin-top: 10px;
-  width: 710px;
   margin-left: auto;
   margin-right: auto;
 }
 
 footer nav {
-  float: none;
+	position: static;
 }
 
 /* User show page */
@@ -263,7 +278,6 @@ form.new_micropost textarea {
 }
 
 .item-main {
-	float: left;
 	overflow: auto;
 }
 
